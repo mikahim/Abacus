@@ -13,7 +13,7 @@ namespace Abacus
         {
             InitializeComponent();
 
-            MainPage = new Abacus.MainPage();
+            MainPage = new Abacus.StartPage();
         }
 
         protected override void OnStart()

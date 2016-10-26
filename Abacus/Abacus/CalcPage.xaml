@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Abacus.CalcPage">
+  <StackLayout>
+
+    <Button Text="Back to main page"
+            x:Name ="mainPageBtn"
+            BackgroundColor="#1ACDFF"
+            HorizontalOptions="Fill"
+            VerticalOptions="Start"
+            Clicked="MainPageBtn_Clicked"/>
+
+    <Button Text="Press here to open camera for OCR calculation"
+            x:Name ="scanTextBtn"
+            BackgroundColor="#1ACDFF"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill"
+            Clicked="ScanTextBtn_Clicked"/>
+
+    <Image x:Name="originalPhoto"
+           WidthRequest="200"
+           />
+
+    <Label Text=""
+           x:Name="resultLabel"
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand"
+           TextColor="White"
+           FontSize="Large" />
+  </StackLayout>
+</ContentPage>

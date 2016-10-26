@@ -12,6 +12,11 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using XLabs.Ioc;
+using XLabs.Platform.Device;
+using XLabs.Platform.Services.Media;
+using Abacus.UWP.Services;
+using Abacus.Interfaces;
 
 namespace Abacus.UWP
 {
@@ -20,6 +25,15 @@ namespace Abacus.UWP
         public MainPage()
         {
             this.InitializeComponent();
+
+            IParseImage ipi = new ParseImageUWP();
+
+            var container = new SimpleContainer();
+            container.Register<IDevice>(t=> WindowsPhoneDevice.CurrentDevice);
+            container.Register<IMediaPicker, MediaPicker>();
+            container.Register<IParseImage>(t => ipi);
+
+            Resolver.SetResolver(container.GetResolver());
 
             LoadApplication(new Abacus.App());
         }

@@ -12,6 +12,11 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using XLabs.Ioc;
+using XLabs.Platform.Device;
+using XLabs.Platform.Services.Media;
+using Abacus.Interfaces;
+using Abacus.WinPhone.Services;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -27,6 +32,15 @@ namespace Abacus.WinPhone
             this.InitializeComponent();
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
+
+            IParseImage ipi = new ParseImageWP();
+
+            var container = new SimpleContainer();
+            container.Register<IDevice>(t => WindowsPhoneDevice.CurrentDevice);
+            container.Register<IMediaPicker, MediaPicker>();
+            container.Register<IParseImage>(t => ipi);
+
+            Resolver.SetResolver(container.GetResolver());
 
             LoadApplication(new Abacus.App());
         }
